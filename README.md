@@ -184,5 +184,4 @@ DELIMITER ;
 ### 7- Crie o modelo lógico do exercício.
 ![modelo](modelo.png)
 
-##### Código 
-![Código](Aluno_cursos.sql)
+##### Código: ![Código](Alunos_cursos.sql)

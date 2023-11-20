@@ -148,3 +148,6 @@ DELIMITER ;
 select faculdade.obter_id_curso('biomedicina', 'biologia') as id_do_curso;
 ```
 ![função](obter_id.png)
+
+### 5- Crie uma procedure que recebe os dados do aluno e de um curso e faz sua matrícula;
+#### Caso o aluno já esteja matriculado em um curso, essa matrícula não pode ser realizada;

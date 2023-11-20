@@ -49,4 +49,17 @@ DELIMITER ;
 
 ```
 
+#### Seleção:
+```mysql
+DELIMITER $$
+USE `faculdade`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consulta_cursos`()
+begin
+    select *
+    from Cursos;
+end$$
+
+DELIMITER ;
+
+```
 

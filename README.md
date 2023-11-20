@@ -65,3 +65,33 @@ DELIMITER ;
 #### Como ficou a seleção:
 ![seleção](selecao.png)
 
+### 2- O aluno possui um e-mail que deve ter seu endereço gerado automaticamente no seguinte formato: nome.sobrenome@dominio.com
+
+#### Criação do trigger:
+```mysql
+
+DELIMITER $$
+USE `faculdade`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `faculdade`.`gerar_email_aluno`
+BEFORE INSERT ON `faculdade`.`alunos`
+FOR EACH ROW
+BEGIN
+  SET NEW.email = CONCAT(NEW.nome, '.', NEW.sobrenome, '@dominio.com');
+END$$
+
+DELIMITER ;
+```
+
+#### Inserção:
+```mysql
+INSERT INTO alunos (nome, sobrenome, ra, Cursos_idCursos) VALUES('Stephany', 'Squilaro', '232325',  11);
+INSERT INTO alunos (nome, sobrenome, ra, Cursos_idCursos) VALUES('Viviane', 'Oliveira', '236025', 12);
+INSERT INTO alunos (nome, sobrenome, ra, Cursos_idCursos) VALUES('Julia', 'Silva', '234125', 13);
+INSERT INTO alunos (nome, sobrenome, ra, Cursos_idCursos) VALUES('Guilherme', 'Ribeiro', '235289', 14);
+INSERT INTO alunos (nome, sobrenome, ra, Cursos_idCursos) VALUES('João', 'Vitor', '232569', 15);
+```
+
+#### Seleção dos alunos:
+![alunos](alunos.png)

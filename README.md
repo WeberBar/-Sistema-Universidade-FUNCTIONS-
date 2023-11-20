@@ -1,7 +1,8 @@
- <h1 align="center" background="white"> Sistema Universidade (FUNCTIONS)</h1>
+ <h1 align="center" > Sistema Universidade (FUNCTIONS)</h1>
 
- ### Crie um banco de dados para armazenar alunos e cursos de uma universidade;
-
+ ### Crie um banco de dados para armazenar alunos e cursos de uma universidade
+* Cada curso pode pertencer a somente uma área
+  
 ```mysql
 CREATE TABLE IF NOT EXISTS `faculdade`.`cursos` (
   `idCursos` INT NOT NULL AUTO_INCREMENT,
@@ -29,4 +30,23 @@ AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb3;
 
 ```
+
+### 1- Utilize Stored Procedures para automatizar a inserção e seleção dos cursos
+
+#### inserção:
+```mysql
+DELIMITER $$
+USE `faculdade`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_cursos`(
+nome varchar(100),
+area varchar(100)
+)
+begin
+    insert into cursos (nome, area) values (nome, area);
+end$$
+
+DELIMITER ;
+
+```
+
 

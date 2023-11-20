@@ -103,3 +103,48 @@ INSERT INTO alunos (nome, sobrenome, ra, Cursos_idCursos) VALUES('João', 'Vitor
 
 #### Seleção dos alunos:
 ![alunos](alunos.png)
+
+### 3- Crie uma rotina que recebe os dados de um novo curso e o insere no banco de dados
+
+```mysql
+DELIMITER $$
+USE `faculdade`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_curso`(
+  IN p_nome VARCHAR(100),
+  IN p_area VARCHAR(100)
+)
+BEGIN
+  INSERT INTO Cursos (nome, area) VALUES (p_nome, p_area);
+END$$
+
+DELIMITER ;
+```
+
+### 4- Crie uma função que recebe o nome de um curso e sua área, em seguida retorna o id do curso
+
+```mysql
+delimiter $
+CREATE FUNCTION obter_id_curso(
+  p_nome_curso VARCHAR(100),
+  p_area_curso VARCHAR(100)
+)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+  DECLARE curso_id INT;
+  
+  SELECT idCursos INTO curso_id
+  FROM Cursos
+  WHERE nome = p_nome_curso AND area = p_area_curso;
+  
+  RETURN curso_id;
+END$
+
+DELIMITER ;
+```
+
+#### chamando a função:
+```mysql
+select faculdade.obter_id_curso('biomedicina', 'biologia') as id_do_curso;
+```
+![função](obter_id.png)

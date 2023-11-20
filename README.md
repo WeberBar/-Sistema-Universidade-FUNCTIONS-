@@ -60,6 +60,8 @@ begin
 end$$
 
 DELIMITER ;
-
 ```
+
+#### Como ficou a seleção:
+![seleção](selecao.png)
 

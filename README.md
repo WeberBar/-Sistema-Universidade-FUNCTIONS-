@@ -1,4 +1,4 @@
- <h1 align="center"> Sistema Universidade (FUNCTIONS)</h1>
+ <h1 align="center" background="white"> Sistema Universidade (FUNCTIONS)</h1>
 
  ### Crie um banco de dados para armazenar alunos e cursos de uma universidade;
 

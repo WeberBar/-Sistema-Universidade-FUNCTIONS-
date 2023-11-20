@@ -151,3 +151,35 @@ select faculdade.obter_id_curso('biomedicina', 'biologia') as id_do_curso;
 
 ### 5- Crie uma procedure que recebe os dados do aluno e de um curso e faz sua matrícula
 #### "Caso o aluno já esteja matriculado em um curso, essa matrícula não pode ser realizada"
+
+```mysql
+CREATE PROCEDURE matricular_aluno(
+IN nome_aluno VARCHAR(100),
+  in sobrenome varchar(100),
+  IN ra_aluno VARCHAR(100),
+  IN nome_curso VARCHAR(100)
+)
+BEGIN
+  DECLARE curso_id INT;
+
+  -- Obtém o ID do curso com base no nome do curso
+  SELECT idCursos INTO curso_id
+  FROM Cursos
+  WHERE nome = nome_curso;
+
+  -- Verifica se o aluno já está matriculado no curso
+  IF EXISTS (SELECT 1 FROM alunos WHERE ra = ra_aluno AND Cursos_idCursos = curso_id) THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Aluno já matriculado neste curso.';
+  ELSE
+    -- Insere o aluno na tabela Alunos
+    INSERT INTO alunos (nome, sobrenome, ra, Cursos_idCursos)
+    VALUES (nome_aluno,sobrenome, ra_aluno,  curso_id);
+  END IF;
+END;
+
+DELIMITER ;
+```
+
+### 7- Crie o modelo lógico do exercício.
+![modelo](modelo.png)

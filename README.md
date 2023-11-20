@@ -33,11 +33,11 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 ### 1- Utilize Stored Procedures para automatizar a inserção e seleção dos cursos
 
-#### inserção:
+#### Criação do stored procedure:
 ```mysql
 DELIMITER $$
 USE `faculdade`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_cursos`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_cursos`(
 nome varchar(100),
 area varchar(100)
 )
@@ -47,6 +47,14 @@ end$$
 
 DELIMITER ;
 
+```
+#### inserção:
+```mysql
+call faculdade.inserir_cursos('Medicina', 'biologia');
+call faculdade.inserir_cursos('engenharia de computação', 'exatas');
+call faculdade.inserir_cursos('Biomedicina', 'biologia');
+call faculdade.inserir_cursos('Enfermagem', 'biologia');
+call faculdade.inserir_cursos('advogado', 'direito');
 ```
 
 #### Seleção:
